@@ -1,0 +1,24 @@
+<div class="row">
+	<div class="col-md-6">
+		<h2>Secret codes</h2>
+	</div>
+	<div class="col-md-6">
+		<%= form_for(@secret_code, remote: true, html: { class: "d-inline-block float-right form-inline" }) do |f| %>
+			How many?
+			<%= f.select :number_of_codes, options_for_select( [1, 10, 20, 50, 100], 10), {}, {class: "form-control"}%>
+			<%= f.submit "Generate Secret codes", data: { disable_with: "Generating..." }, class: "btn btn-primary" %>
+		<% end %>
+	</div>
+</div>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Secret Code</th>
+			<th>Associated User</th>
+		</tr>
+	</thead>
+	<tbody id="secret_codes">
+		<%= render @secret_codes %>
+	</tbody>
+</table>
+<%= will_paginate @secret_codes %>
